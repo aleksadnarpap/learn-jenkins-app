@@ -105,7 +105,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://animated-garbanzo-699xv4wj7w74256v7-3000.app.github.dev'
+                CI_ENVIRONMENT_URL = 'https://amazing-duckanoo-f7f07a.netlify.app'
             }
 
             steps {

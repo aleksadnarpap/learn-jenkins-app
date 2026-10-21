@@ -98,11 +98,13 @@ pipeline {
 
         stage('Approval') {
             steps {
-                input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
+                timeout(time: 15, unit: 'MINUTES') {
+                    input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Production') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -134,6 +136,7 @@ pipeline {
 
             steps {
                 sh '''
+                    echo "Deployed to production url: $CI_ENVIRONMENT_URL"
                     npx playwright test --reporter=html
                 '''
             }
